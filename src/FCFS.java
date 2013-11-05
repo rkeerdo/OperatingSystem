@@ -5,15 +5,15 @@ import java.util.Queue;
 
 public class FCFS implements Algorithm {
 	private boolean[] bitVector;
-	private int[] queue;
+	private ArrayList<Integer> queue;
 	private int startPoint;
 	private Queue<Integer> completeOrder;
 	public FCFS(){		
 	}
 	private void processRequest(){
 		completeOrder = new LinkedList<Integer>();
-		for(int i = 0; i<queue.length;i++){
-			completeOrder.offer(queue[i]);
+		for(int i = 0; i<queue.size();i++){
+			completeOrder.offer(queue.get(i));
 		}
 	}
 	@Override
@@ -22,7 +22,7 @@ public class FCFS implements Algorithm {
 		
 	}
 	@Override
-	public void setUpAlgorithm(int[] queue, boolean[] bits, int start) {
+	public void setUpAlgorithm(ArrayList<Integer> queue, boolean[] bits, int start) {
 		this.bitVector = bits;
 		this.queue = queue;
 		this.startPoint = start;
