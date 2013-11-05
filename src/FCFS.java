@@ -8,6 +8,7 @@ public class FCFS implements Algorithm {
 	private ArrayList<Integer> queue;
 	private int startPoint;
 	private Queue<Integer> completeOrder;
+	private ArrayList<Integer> steps;
 	public FCFS(){		
 	}
 	private void processRequest(){
@@ -28,6 +29,11 @@ public class FCFS implements Algorithm {
 		this.startPoint = start;
 		processRequest();
 		
+	}
+	@Override
+	public ArrayList<Integer> getAlgorithmProcession() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

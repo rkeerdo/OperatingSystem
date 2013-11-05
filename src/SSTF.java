@@ -8,7 +8,7 @@ public class SSTF implements Algorithm {
 	private int startPoint;
 	private ArrayList<Integer> queue;
 	private Queue<Integer> processedOrder;
-	
+	private ArrayList<Integer> steps;
 	public SSTF(){
 		
 	}
@@ -21,7 +21,11 @@ public class SSTF implements Algorithm {
 	private void processOrder(){
 		boolean leftEnd = false, rightEnd = false;
 		processedOrder = new LinkedList<Integer>();
+		steps = new ArrayList<Integer>();
+		ArrayList<Integer> processLeft = new ArrayList<Integer>();
+		ArrayList<Integer> processRight = new ArrayList<Integer>();
 		int n = startPoint, i=n+1, j=n-1;
+		
 		if(bitVector[n]){
 			processedOrder.offer(n);
 		}
@@ -65,6 +69,12 @@ public class SSTF implements Algorithm {
 		this.startPoint = start;
 		processOrder();
 		
+	}
+
+	@Override
+	public ArrayList<Integer> getAlgorithmProcession() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

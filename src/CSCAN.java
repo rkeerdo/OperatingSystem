@@ -7,17 +7,20 @@ public class CSCAN implements Algorithm {
 	private int startPoint;
 	private ArrayList<Integer> queue;
 	private Queue<Integer> processedOrder;
+	private ArrayList<Integer> steps;
 	@Override
 	public Queue<Integer> getProcessedList() {
 		return processedOrder;
 	}
 	private void processOrder(){
+		steps = new ArrayList<Integer>();
 		processedOrder = new LinkedList<Integer>();
 		for(int i = startPoint; i<bitVector.length; i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+				steps.add(i);
 			}
 		}
 		System.out.println("Right end reached. Moving reader head to beginning.");
@@ -26,6 +29,7 @@ public class CSCAN implements Algorithm {
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+				steps.add(i);
 			}
 		}
 		System.out.println("Start point reached. Ending algorithm.");
@@ -37,6 +41,11 @@ public class CSCAN implements Algorithm {
 		this.bitVector = bits;
 		this.startPoint = start;
 		processOrder();
+	}
+	@Override
+	public ArrayList<Integer> getAlgorithmProcession() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

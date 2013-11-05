@@ -8,17 +8,20 @@ public class SCAN implements Algorithm{
 	private int startPoint;
 	private ArrayList<Integer> queue;
 	private Queue<Integer> processedOrder;
+	private ArrayList<Integer> steps;
 	@Override
 	public Queue<Integer> getProcessedList() {
 		return processedOrder;
 	}
 	private void processOrder(){
 		processedOrder = new LinkedList<Integer>();
+		steps = new ArrayList<Integer>();
 		for(int i = startPoint; i<bitVector.length; i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+				steps.add(i);
 			}
 		}
 		System.out.println("Right end reached. Reversing SCAN direction.");
@@ -27,6 +30,7 @@ public class SCAN implements Algorithm{
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+				steps.add(i);
 			}
 		}
 		System.out.println("Left end reached. Ending algorithm.");
@@ -38,6 +42,11 @@ public class SCAN implements Algorithm{
 		this.queue = queue;
 		this.startPoint = start;
 		processOrder();
+	}
+	@Override
+	public ArrayList<Integer> getAlgorithmProcession() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
