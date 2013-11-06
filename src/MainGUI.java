@@ -33,8 +33,10 @@ public class MainGUI{
 	protected Shell shlAlgoritmidKvaketastel;
 	private Text readLocation;
 	private Text outputText;
-	private int head;
+	private int head = 0;
 	ArrayList<Integer> outOrder = new ArrayList<Integer>();
+	private Text compareAmmount;
+	ArrayList<Integer> order = new ArrayList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -71,7 +73,7 @@ public class MainGUI{
 	protected void createContents() {
 		
 		
-		final ArrayList<Integer> order = new ArrayList<Integer>();
+		
 		final boolean[] bools = new boolean[32];
 
 		
@@ -680,7 +682,10 @@ public class MainGUI{
 			public void widgetSelected(SelectionEvent e) {
 				int x = valimChoice.getSelectionIndex();
 				if (x == 0){
-					order.clear();
+					for(Button j:orderButtons){
+						j.setText("");
+					}
+					order.removeAll(order);
 					order.add(15);
 					order.add(8);
 					order.add(17);
@@ -691,17 +696,63 @@ public class MainGUI{
 					int n = 0;
 					for(Integer i:order){
 						Button a = orderButtons.get(i);
+						//System.out.println(i);
 						a.setText(Integer.toString(n));
 						n++;
 					}
 				}
-				
-				
+				if (x == 1){
+					for(Button j:orderButtons){
+						j.setText("");
+					}
+					order.removeAll(order);
+					order.add(21);
+					order.add(31);
+					order.add(1);
+					order.add(16);
+					order.add(24);
+					order.add(7);
+					order.add(9);
+					order.add(11);
+					order.add(3);
+					order.add(28);
+					int n = 0;
+					for(Integer i:order){
+						Button a = orderButtons.get(i);
+						//System.out.println(i);
+						a.setText(Integer.toString(n));
+						n++;
+					}
+				}
+				if (x == 2){
+					for(Button j:orderButtons){
+						j.setText("");
+					}
+					order.removeAll(order);
+					order.add(3);
+					order.add(4);
+					order.add(5);
+					order.add(21);
+					order.add(7);
+					order.add(2);
+					order.add(30);
+					int n = 0;
+					for(Integer i:order){
+						Button a = orderButtons.get(i);
+						//System.out.println(i);
+						a.setText(Integer.toString(n));
+						n++;
+					}
+				}
 				for(Button i:orderButtons){	
 					if (x < 3){
 						i.setEnabled(false);
 					}
 					else{
+						order.removeAll(order);
+						for(Button j:orderButtons){
+							j.setText("");
+						}
 						i.setEnabled(true);
 					}
 				}
@@ -800,9 +851,10 @@ public class MainGUI{
 				   n++;
 				}
 				for (boolean k:bools){
-					System.out.println(k);
+					//System.out.println(k);
 				}
 				int x = algChoice.getSelectionIndex();
+				System.out.println(x);
 				
 				
 				if (x == 1){
@@ -841,6 +893,7 @@ public class MainGUI{
 					}
 				
 				outputText.setText(out);
+				compareAmmount.setText(Integer.toString(head));
 				
 				lol.setInput(outOrder);
 			}
@@ -854,7 +907,15 @@ public class MainGUI{
 		
 		outputText = new Text(grpVljund, SWT.BORDER);
 		outputText.setEditable(false);
-		outputText.setBounds(10, 20, 628, 48);
+		outputText.setBounds(10, 20, 628, 21);
+		
+		Label lblPrdumisteHulk = new Label(grpVljund, SWT.NONE);
+		lblPrdumisteHulk.setText("P\u00F6\u00F6rdumiste hulk:");
+		lblPrdumisteHulk.setBounds(10, 47, 97, 15);
+		
+		compareAmmount = new Text(grpVljund, SWT.BORDER);
+		compareAmmount.setEditable(false);
+		compareAmmount.setBounds(113, 44, 44, 21);
 		
 		Group grpReset = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
 		grpReset.setText("Reset");
@@ -865,6 +926,7 @@ public class MainGUI{
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				outputText.setText("");
+				//System.out.println(head);
 				for(Label j:labels){
 					j.setBackground(new Color(null, 238, 238, 238));
 				}
