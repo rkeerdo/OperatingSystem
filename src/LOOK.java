@@ -16,7 +16,7 @@ public class LOOK implements Algorithm {
 	private void processOrder(){
 		processedOrder = new LinkedList<Integer>();
 		steps = new ArrayList<Integer>();
-		int big = queue.get(queue.size()-1), small = queue.get(0);
+		int big = queue.size()-1, small = queue.get(0);
 		for(int i = startPoint; i<big;i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);

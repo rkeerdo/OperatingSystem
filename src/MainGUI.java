@@ -34,6 +34,7 @@ public class MainGUI{
 	private Text readLocation;
 	private Text outputText;
 	private int head;
+	ArrayList<Integer> outOrder = new ArrayList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -72,6 +73,7 @@ public class MainGUI{
 		
 		final ArrayList<Integer> order = new ArrayList<Integer>();
 		final boolean[] bools = new boolean[32];
+
 		
 		shlAlgoritmidKvaketastel = new Shell();
 		shlAlgoritmidKvaketastel.setMinimumSize(new Point(800, 600));
@@ -744,26 +746,32 @@ public class MainGUI{
 		grpLugemispeaLigikaudneLiikumine.setBounds(126, 210, 648, 342);
 		
 		Composite composite = new Composite(grpLugemispeaLigikaudneLiikumine, SWT.EMBEDDED);
-		composite.setBounds(10, 23, 628, 337);
+		composite.setBounds(10, 20, 628, 312);
 		
 		Frame frame = SWT_AWT.new_Frame(composite);
 		
-
 		
-		Panel panel = new Panel();
-		frame.add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		//
+		//
+		//
+		//
+		//
+		//
+		Panel out = new Panel();
+		frame.add(out);
+		draw lol = new draw(outOrder);
+		out.setLayout(new BorderLayout(0, 0));
 		
-		//joonistamine toimub siin, achtung achtung
 		JRootPane rootPane = new JRootPane();
-		panel.add(rootPane);
-		draw obj = new draw();
-		panel.add(obj);
+		out.add(rootPane);
 		
-		ScrolledComposite scrolledComposite = new ScrolledComposite(composite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(107, 51, 85, 85);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
+		out.add(lol);
+		//
+		//
+		//
+		//
+		//
+		//
 
 		
 		
@@ -796,7 +804,6 @@ public class MainGUI{
 				}
 				int x = algChoice.getSelectionIndex();
 				
-				ArrayList<Integer> outOrder = new ArrayList<Integer>();
 				
 				if (x == 1){
 					algoritm = new FCFS();

@@ -1,10 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 
 public class draw extends JPanel{
+	
+	public draw(ArrayList<Integer> input) {
+	    input = input;
+	}
 	
 	public void drawing(){
 		repaint();
@@ -14,7 +19,7 @@ public class draw extends JPanel{
 		super.paintComponent (g);
 		
 		g.setColor(Color.BLUE);
-		g.fillRect(10, 10, 30, 30);
+		g.fillRect(0,0,1000,1000);
 		
 	}
 	
