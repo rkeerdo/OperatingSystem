@@ -954,16 +954,20 @@ public class MainGUI{
 		btnReset.setBounds(10, 33, 90, 25);
 		btnReset.setText("Reset");
 		
-		Label lblMadeBy = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
-		lblMadeBy.setBounds(10, 444, 55, 15);
+		Group grpCredits = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
+		grpCredits.setText("Credits");
+		grpCredits.setBounds(10, 444, 110, 108);
+		
+		Label lblMadeBy = new Label(grpCredits, SWT.NONE);
+		lblMadeBy.setBounds(10, 30, 55, 15);
 		lblMadeBy.setText("Made by - ");
 		
-		Label lblRainerKeerdo = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
-		lblRainerKeerdo.setBounds(10, 465, 110, 15);
+		Label lblRainerKeerdo = new Label(grpCredits, SWT.NONE);
+		lblRainerKeerdo.setBounds(10, 51, 90, 15);
 		lblRainerKeerdo.setText("Rainer Keerdo");
 		
-		Label lblAllanKustavus = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
-		lblAllanKustavus.setBounds(10, 486, 110, 15);
+		Label lblAllanKustavus = new Label(grpCredits, SWT.NONE);
+		lblAllanKustavus.setBounds(10, 72, 90, 15);
 		lblAllanKustavus.setText("Allan Kustavus");
 
 	}
