@@ -953,6 +953,18 @@ public class MainGUI{
 		});
 		btnReset.setBounds(10, 33, 90, 25);
 		btnReset.setText("Reset");
+		
+		Label lblMadeBy = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
+		lblMadeBy.setBounds(10, 444, 55, 15);
+		lblMadeBy.setText("Made by - ");
+		
+		Label lblRainerKeerdo = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
+		lblRainerKeerdo.setBounds(10, 465, 110, 15);
+		lblRainerKeerdo.setText("Rainer Keerdo");
+		
+		Label lblAllanKustavus = new Label(shlAlgoritmidKvaketastel, SWT.NONE);
+		lblAllanKustavus.setBounds(10, 486, 110, 15);
+		lblAllanKustavus.setText("Allan Kustavus");
 
 	}
 }
