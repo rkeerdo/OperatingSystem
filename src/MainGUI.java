@@ -19,6 +19,7 @@ import org.eclipse.swt.awt.SWT_AWT;
 import java.awt.Panel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Queue;
 
 import javax.swing.JRootPane;
 

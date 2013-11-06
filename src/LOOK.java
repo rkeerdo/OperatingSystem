@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,7 +17,10 @@ public class LOOK implements Algorithm {
 	private void processOrder(){
 		processedOrder = new LinkedList<Integer>();
 		steps = new ArrayList<Integer>();
-		int big = queue.size()-1, small = queue.get(0);
+		ArrayList<Integer> sortList = new ArrayList<Integer>();
+		sortList.addAll(queue);
+		Collections.sort(sortList);
+		int big = sortList.get(sortList.size()-1), small = sortList.get(0);
 		for(int i = startPoint; i<big;i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);

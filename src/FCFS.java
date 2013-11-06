@@ -17,8 +17,14 @@ public class FCFS implements Algorithm {
 		for(int i = 0; i<queue.size();i++){
 			completeOrder.offer(queue.get(i));
 		}
-		for(int i=startPoint; i<queue.get(0); i++){
+		if(startPoint>queue.get(0)){
+			for(int i=startPoint;i>queue.get(0);i--){
+				steps.add(i);
+			}
+		} else {
+			for(int i=startPoint; i<queue.get(0); i++){
 			steps.add(i);
+			}
 		}
 		for(int i = 0; i<queue.size()-1;i++){
 			int elem1 = queue.get(i);
