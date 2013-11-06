@@ -759,7 +759,7 @@ public class MainGUI{
 		//
 		Panel out = new Panel();
 		frame.add(out);
-		draw lol = new draw(outOrder);
+		final draw lol = new draw(outOrder);
 		out.setLayout(new BorderLayout(0, 0));
 		
 		JRootPane rootPane = new JRootPane();
@@ -841,6 +841,8 @@ public class MainGUI{
 					}
 				
 				outputText.setText(out);
+				
+				lol.setInput(outOrder);
 			}
 		});
 		goButton.setBounds(10, 32, 90, 25);
