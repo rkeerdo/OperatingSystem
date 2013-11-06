@@ -30,12 +30,17 @@ public class SSTF implements Algorithm {
 			processedOrder.offer(n);
 		}
 		while(true){
+			processRight.add(i);
+			processLeft.add(j);
 			try{
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				j=i;
 				System.out.println("Added to queue: " + i);
+				steps.addAll(processRight);
+				processRight.clear();
+				processLeft.clear();
 			}
 			} catch (Exception e){
 				System.out.println("Right end reached.");
@@ -47,6 +52,9 @@ public class SSTF implements Algorithm {
 				bitVector[j]=false;
 				i=j;
 				System.out.println("Added to queue: " + j);
+				steps.addAll(processLeft);
+				processRight.clear();
+				processLeft.clear();
 			}
 			} catch (Exception e){
 				System.out.println("Left end reached.");
@@ -73,8 +81,7 @@ public class SSTF implements Algorithm {
 
 	@Override
 	public ArrayList<Integer> getAlgorithmProcession() {
-		// TODO Auto-generated method stub
-		return null;
+		return steps;
 	}
 
 	

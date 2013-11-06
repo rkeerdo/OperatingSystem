@@ -32,8 +32,7 @@ public class FCFS implements Algorithm {
 	}
 	@Override
 	public ArrayList<Integer> getAlgorithmProcession() {
-		// TODO Auto-generated method stub
-		return null;
+		return steps;
 	}
 	
 }

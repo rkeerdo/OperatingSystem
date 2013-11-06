@@ -22,6 +22,8 @@ public class LOOK implements Algorithm {
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+			}
+			if(!(i==startPoint)&&!(i==big)){
 				steps.add(i);
 			}
 		}
@@ -31,8 +33,8 @@ public class LOOK implements Algorithm {
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
-				steps.add(i);
 			}
+			steps.add(i);
 		}
 		System.out.println("Left end reached. Ending algorithm.");
 	}
@@ -46,8 +48,7 @@ public class LOOK implements Algorithm {
 	}
 	@Override
 	public ArrayList<Integer> getAlgorithmProcession() {
-		// TODO Auto-generated method stub
-		return null;
+		return steps;
 	}
 	
 }

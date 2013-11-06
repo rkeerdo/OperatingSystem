@@ -21,15 +21,20 @@ public class SCAN implements Algorithm{
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+			}
+			if(!(i==startPoint)&&!(i==bitVector.length-1)){
 				steps.add(i);
 			}
 		}
 		System.out.println("Right end reached. Reversing SCAN direction.");
+		
 		for(int i=bitVector.length-1; i>0; i--){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
+			}
+			if(!(i==bitVector.length-1)){
 				steps.add(i);
 			}
 		}
@@ -45,8 +50,7 @@ public class SCAN implements Algorithm{
 	}
 	@Override
 	public ArrayList<Integer> getAlgorithmProcession() {
-		// TODO Auto-generated method stub
-		return null;
+		return steps;
 	}
 	
 
