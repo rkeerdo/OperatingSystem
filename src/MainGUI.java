@@ -19,6 +19,7 @@ import org.eclipse.swt.awt.SWT_AWT;
 import java.awt.Panel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Queue;
 
 import javax.swing.JRootPane;
 
@@ -29,14 +30,14 @@ import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainGUI{
 
-	Object algoritm = new FCFS();
+	Algorithm algoritm;
 	protected Shell shlAlgoritmidKvaketastel;
 	private Text readLocation;
 	private Text outputText;
 	private int head = 0;
-	ArrayList<Integer> outOrder = new ArrayList<Integer>();
+	private ArrayList<Integer> outOrder = new ArrayList<Integer>();
 	private Text compareAmmount;
-	ArrayList<Integer> order = new ArrayList<Integer>();
+	private ArrayList<Integer> order = new ArrayList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -126,161 +127,161 @@ public class MainGUI{
 		Label l0 = new Label(grpValitudSektorid, SWT.NONE);
 		l0.setAlignment(SWT.CENTER);
 		l0.setBounds(22, 72, 13, 15);
-		l0.setText("1");
+		l0.setText("0");
 		
 		Label l1 = new Label(grpValitudSektorid, SWT.NONE);
 		l1.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
-		l1.setText("2");
+		l1.setText("1");
 		l1.setAlignment(SWT.CENTER);
 		l1.setBounds(41, 72, 13, 15);
 		
 		Label l2 = new Label(grpValitudSektorid, SWT.NONE);
-		l2.setText("3");
+		l2.setText("2");
 		l2.setAlignment(SWT.CENTER);
 		l2.setBounds(60, 72, 13, 15);
 		
 		Label l3 = new Label(grpValitudSektorid, SWT.NONE);
-		l3.setText("4");
+		l3.setText("3");
 		l3.setAlignment(SWT.CENTER);
 		l3.setBounds(79, 72, 13, 15);
 		
 		Label l4 = new Label(grpValitudSektorid, SWT.NONE);
-		l4.setText("5");
+		l4.setText("4");
 		l4.setAlignment(SWT.CENTER);
 		l4.setBounds(98, 72, 13, 15);
 		
 		Label l5 = new Label(grpValitudSektorid, SWT.NONE);
-		l5.setText("6");
+		l5.setText("5");
 		l5.setAlignment(SWT.CENTER);
 		l5.setBounds(117, 72, 13, 15);
 		
 		Label l11 = new Label(grpValitudSektorid, SWT.NONE);
-		l11.setText("12");
+		l11.setText("11");
 		l11.setAlignment(SWT.CENTER);
 		l11.setBounds(231, 72, 13, 15);
 		
 		Label l10 = new Label(grpValitudSektorid, SWT.NONE);
-		l10.setText("11");
+		l10.setText("10");
 		l10.setAlignment(SWT.CENTER);
 		l10.setBounds(212, 72, 13, 15);
 		
 		Label l9 = new Label(grpValitudSektorid, SWT.NONE);
-		l9.setText("10");
+		l9.setText("9");
 		l9.setAlignment(SWT.CENTER);
 		l9.setBounds(193, 72, 13, 15);
 		
 		Label l8 = new Label(grpValitudSektorid, SWT.NONE);
-		l8.setText("9");
+		l8.setText("8");
 		l8.setAlignment(SWT.CENTER);
 		l8.setBounds(174, 72, 13, 15);
 		
 		Label l7 = new Label(grpValitudSektorid, SWT.NONE);
-		l7.setText("8");
+		l7.setText("7");
 		l7.setAlignment(SWT.CENTER);
 		l7.setBounds(155, 72, 13, 15);
 		
 		Label l6 = new Label(grpValitudSektorid, SWT.NONE);
-		l6.setText("7");
+		l6.setText("6");
 		l6.setAlignment(SWT.CENTER);
 		l6.setBounds(136, 72, 13, 15);
 		
 		Label l17 = new Label(grpValitudSektorid, SWT.NONE);
-		l17.setText("18");
+		l17.setText("17");
 		l17.setAlignment(SWT.CENTER);
 		l17.setBounds(345, 72, 13, 15);
 		
 		Label l16 = new Label(grpValitudSektorid, SWT.NONE);
-		l16.setText("17");
+		l16.setText("16");
 		l16.setAlignment(SWT.CENTER);
 		l16.setBounds(326, 72, 13, 15);
 		
 		Label l15 = new Label(grpValitudSektorid, SWT.NONE);
-		l15.setText("16");
+		l15.setText("15");
 		l15.setAlignment(SWT.CENTER);
 		l15.setBounds(307, 72, 13, 15);
 		
 		Label l14 = new Label(grpValitudSektorid, SWT.NONE);
-		l14.setText("15");
+		l14.setText("14");
 		l14.setAlignment(SWT.CENTER);
 		l14.setBounds(288, 72, 13, 15);
 		
 		Label l13 = new Label(grpValitudSektorid, SWT.NONE);
-		l13.setText("14");
+		l13.setText("13");
 		l13.setAlignment(SWT.CENTER);
 		l13.setBounds(269, 72, 13, 15);
 		
 		Label l12 = new Label(grpValitudSektorid, SWT.NONE);
-		l12.setText("13");
+		l12.setText("12");
 		l12.setAlignment(SWT.CENTER);
 		l12.setBounds(250, 72, 13, 15);
 		
 		Label l23 = new Label(grpValitudSektorid, SWT.NONE);
-		l23.setText("24");
+		l23.setText("23");
 		l23.setAlignment(SWT.CENTER);
 		l23.setBounds(459, 72, 13, 15);
 		
 		Label l22 = new Label(grpValitudSektorid, SWT.NONE);
-		l22.setText("23");
+		l22.setText("22");
 		l22.setAlignment(SWT.CENTER);
 		l22.setBounds(440, 72, 13, 15);
 		
 		Label l21 = new Label(grpValitudSektorid, SWT.NONE);
-		l21.setText("22");
+		l21.setText("21");
 		l21.setAlignment(SWT.CENTER);
 		l21.setBounds(421, 72, 13, 15);
 		
 		Label l20 = new Label(grpValitudSektorid, SWT.NONE);
-		l20.setText("21");
+		l20.setText("20");
 		l20.setAlignment(SWT.CENTER);
 		l20.setBounds(402, 72, 13, 15);
 		
 		Label l19 = new Label(grpValitudSektorid, SWT.NONE);
-		l19.setText("20");
+		l19.setText("19");
 		l19.setAlignment(SWT.CENTER);
 		l19.setBounds(383, 72, 13, 15);
 		
 		Label l18 = new Label(grpValitudSektorid, SWT.NONE);
-		l18.setText("19");
+		l18.setText("18");
 		l18.setAlignment(SWT.CENTER);
 		l18.setBounds(364, 72, 13, 15);
 		
 		Label l29 = new Label(grpValitudSektorid, SWT.NONE);
-		l29.setText("30");
+		l29.setText("29");
 		l29.setAlignment(SWT.CENTER);
 		l29.setBounds(573, 72, 13, 15);
 		
 		Label l28 = new Label(grpValitudSektorid, SWT.NONE);
-		l28.setText("29");
+		l28.setText("28");
 		l28.setAlignment(SWT.CENTER);
 		l28.setBounds(554, 72, 13, 15);
 		
 		Label l27 = new Label(grpValitudSektorid, SWT.NONE);
-		l27.setText("28");
+		l27.setText("27");
 		l27.setAlignment(SWT.CENTER);
 		l27.setBounds(535, 72, 13, 15);
 		
 		Label l26 = new Label(grpValitudSektorid, SWT.NONE);
-		l26.setText("27");
+		l26.setText("26");
 		l26.setAlignment(SWT.CENTER);
 		l26.setBounds(516, 72, 13, 15);
 		
 		Label l25 = new Label(grpValitudSektorid, SWT.NONE);
-		l25.setText("26");
+		l25.setText("25");
 		l25.setAlignment(SWT.CENTER);
 		l25.setBounds(497, 72, 13, 15);
 		
 		Label l24 = new Label(grpValitudSektorid, SWT.NONE);
-		l24.setText("25");
+		l24.setText("24");
 		l24.setAlignment(SWT.CENTER);
 		l24.setBounds(478, 72, 13, 15);
 		
 		Label l31 = new Label(grpValitudSektorid, SWT.NONE);
-		l31.setText("32");
+		l31.setText("31");
 		l31.setAlignment(SWT.CENTER);
 		l31.setBounds(611, 72, 13, 15);
 		
 		Label l30 = new Label(grpValitudSektorid, SWT.NONE);
-		l30.setText("31");
+		l30.setText("30");
 		l30.setAlignment(SWT.CENTER);
 		l30.setBounds(592, 72, 13, 15);
 		
@@ -810,7 +811,7 @@ public class MainGUI{
 		//
 		Panel out = new Panel();
 		frame.add(out);
-		final draw lol = new draw(outOrder);
+		final draw lol = new draw(outOrder, order,true);
 		out.setLayout(new BorderLayout(0, 0));
 		
 		JRootPane rootPane = new JRootPane();
@@ -840,6 +841,9 @@ public class MainGUI{
 				for(Integer i:order){
 					output = output + i;
 				}
+				
+				//System.out.println(output);
+				
 				for(Button i:orderButtons){
 					
 				   if (i.getText() != ""){
@@ -856,46 +860,55 @@ public class MainGUI{
 				int x = algChoice.getSelectionIndex();
 				System.out.println(x);
 				
+				if (x==1){
+					lol.setBool(true);
+				}
+				else{
+					lol.setBool(false);
+				}
 				
 				if (x == 1){
 					algoritm = new FCFS();
-					((FCFS) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((FCFS) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				if (x == 2){
 					algoritm = new SSTF();
-					((SSTF) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((SSTF) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				if (x == 3){
 					algoritm = new SCAN();
-					((SCAN) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((SCAN) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				if (x == 4){
 					algoritm = new LOOK();
-					((LOOK) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((LOOK) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				if (x == 5){
 					algoritm = new CSCAN();
-					((CSCAN) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((CSCAN) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				if (x == 6){
 					algoritm = new CLOOK();
-					((CLOOK) algoritm).setUpAlgorithm(order, bools, head);
-					outOrder = ((CLOOK) algoritm).getAlgorithmProcession();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
 				}
 				String out = "";
 				for(Integer i:outOrder){
 						out = out + ", " + Integer.toString(i);
 					}
-				
+			
 				outputText.setText(out);
-				compareAmmount.setText(Integer.toString(head));
+				compareAmmount.setText(Integer.toString(outOrder.size()));
+				
 				
 				lol.setInput(outOrder);
+				lol.setOrder(order);
+				lol.drawing();
 			}
 		});
 		goButton.setBounds(10, 32, 90, 25);
