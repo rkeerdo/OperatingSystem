@@ -759,6 +759,11 @@ public class MainGUI{
 		panel.add(rootPane);
 		draw obj = new draw();
 		panel.add(obj);
+		
+		ScrolledComposite scrolledComposite = new ScrolledComposite(composite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setBounds(107, 51, 85, 85);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
 
 		
 		
