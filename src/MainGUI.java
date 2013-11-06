@@ -953,10 +953,6 @@ public class MainGUI{
 		});
 		btnReset.setBounds(10, 33, 90, 25);
 		btnReset.setText("Reset");
-		
-		Group grpTingmrgid = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
-		grpTingmrgid.setText("Tingm\u00E4rgid");
-		grpTingmrgid.setBounds(10, 444, 110, 108);
 
 	}
 }
