@@ -46,14 +46,6 @@ public class draw extends JPanel{
 
 
 	public void paintComponent(Graphics g){
-		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		//System.out.println("painting");
 		float cons_x = (float) (628/32.0);
 		if (input.size() == 0){
@@ -100,7 +92,6 @@ public class draw extends JPanel{
 					g.drawOval((int) (cons_x * i),(int) (cons_y * y),3,3);
 					y++;
 				}
-				
 			}
 		}
 	}

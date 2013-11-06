@@ -939,6 +939,12 @@ public class MainGUI{
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				outputText.setText("");
+				ArrayList<Integer> emptyOne = new ArrayList<Integer>();
+				emptyOne.add(-8);
+				lol.setInput(emptyOne);
+				lol.setOrder(emptyOne);
+				lol.drawing();
+				
 				//System.out.println(head);
 				for(Label j:labels){
 					j.setBackground(new Color(null, 238, 238, 238));
