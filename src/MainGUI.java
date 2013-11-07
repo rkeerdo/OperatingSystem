@@ -98,8 +98,7 @@ public class MainGUI{
 		Group grpValim = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
 		grpValim.setText("Valim");
 		grpValim.setBounds(10, 96, 110, 80);
-		
-
+	
 		
 		Group grpValitudSektorid = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
 		grpValitudSektorid.setText("Valitud sektorid");
