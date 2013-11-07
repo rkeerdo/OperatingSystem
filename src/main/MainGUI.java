@@ -1,4 +1,5 @@
 package main;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.graphics.Color;
@@ -92,25 +93,6 @@ public class MainGUI{
 		algChoice.setItems(new String[] {"NOOP", "FCFS", "SSTF", "SCAN", "LOOK", "C-SCAN", "C-LOOK"});
 		algChoice.addSelectionListener (new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				int x = algChoice.getSelectionIndex();
-				if (x == 1){
-					algoritm = new FCFS();
-				}
-				if (x == 2){
-					algoritm = new SSTF();
-				}
-				if (x == 3){
-					algoritm = new SCAN();
-				}
-				if (x == 4){
-					algoritm = new LOOK();
-				}
-				if (x == 5){
-					algoritm = new CSCAN();
-				}
-				if (x == 6){
-					algoritm = new CLOOK();
-				}
 			}
 		});
 		algChoice.setBounds(10, 30, 91, 23);
@@ -118,8 +100,7 @@ public class MainGUI{
 		Group grpValim = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
 		grpValim.setText("Valim");
 		grpValim.setBounds(10, 96, 110, 80);
-		
-
+	
 		
 		Group grpValitudSektorid = new Group(shlAlgoritmidKvaketastel, SWT.NONE);
 		grpValitudSektorid.setText("Valitud sektorid");
@@ -679,7 +660,7 @@ public class MainGUI{
 		orderButtons.add(order31);
 		
 		final Combo valimChoice = new Combo(grpValim, SWT.NONE);
-		valimChoice.setItems(new String[] {"PowerPoint", "Teine", "Kolmas", "Isetegemine"});
+		valimChoice.setItems(new String[] {"PowerPoint", "Preser 2", "Preser 3", "Self defined"});
 		valimChoice.addSelectionListener (new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				int x = valimChoice.getSelectionIndex();
@@ -776,7 +757,10 @@ public class MainGUI{
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try { 
-			        head = Integer.parseInt(readLocation.getText()); 
+			        head = Integer.parseInt(readLocation.getText());
+			        if (head < 0 || head > 31){
+			        	Integer.parseInt("o");
+			        }
 			        for(Label i:labels){
 						   if (Integer.parseInt(i.getText()) == head){
 							   i.setBackground(new Color(null, 255, 1, 1));
@@ -803,12 +787,7 @@ public class MainGUI{
 		
 		Frame frame = SWT_AWT.new_Frame(composite);
 		
-		
-		//
-		//
-		//
-		//
-		//
+
 		//
 		Panel out = new Panel();
 		frame.add(out);
@@ -819,12 +798,11 @@ public class MainGUI{
 		out.add(rootPane);
 		
 		out.add(lol);
-		//
-		//
-		//
-		//
-		//
-		//
+		ArrayList<Integer> emptyOne = new ArrayList<Integer>();
+		emptyOne.add(-8);
+		lol.setInput(emptyOne);
+		lol.setOrder(emptyOne);
+		lol.drawing();
 
 		
 		
@@ -861,13 +839,18 @@ public class MainGUI{
 				int x = algChoice.getSelectionIndex();
 				System.out.println(x);
 				
-				if (x==1){
+				if (x<2){
 					lol.setBool(true);
 				}
 				else{
 					lol.setBool(false);
 				}
 				
+				if (x == 0){
+					algoritm = new NOOP();
+					algoritm.setUpAlgorithm(order, bools, head);
+					outOrder = algoritm.getAlgorithmProcession();
+				}
 				if (x == 1){
 					algoritm = new FCFS();
 					algoritm.setUpAlgorithm(order, bools, head);
@@ -900,7 +883,7 @@ public class MainGUI{
 				}
 				String out = "";
 				for(Integer i:outOrder){
-						out = out + ", " + Integer.toString(i);
+						out = out + " " + Integer.toString(i);
 					}
 			
 				outputText.setText(out);
@@ -940,6 +923,7 @@ public class MainGUI{
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				outputText.setText("");
+				compareAmmount.setText("");
 				ArrayList<Integer> emptyOne = new ArrayList<Integer>();
 				emptyOne.add(-8);
 				lol.setInput(emptyOne);

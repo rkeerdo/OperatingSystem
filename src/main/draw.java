@@ -1,4 +1,5 @@
 package main;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class draw extends JPanel{
 
 	public void paintComponent(Graphics g){
 		//System.out.println("painting");
-		float cons_x = (float) (628/32.0);
+		float cons_x = (float) (628.0/32.0);
 		if (input.size() == 0){
 			//System.out.println("nope");
 		}
@@ -60,13 +61,21 @@ public class draw extends JPanel{
 			}
 			System.out.println(output);
 			
-			float cons_y = (float) (312/input.size());
+			float cons_y = (float) (312.0/(input.size()+input.size()/10));
 			super.paintComponent (g);
 			
 			g.setColor(Color.GRAY);
 			g.fillRect(0,0,1000,1000);
 			
 			g.setColor(Color.BLACK);
+			
+			for (int i = 0;i<32;i++){
+				g.setColor(Color.lightGray);
+				g.drawLine((int) (cons_x * i)+6, 0, (int) (cons_x * i)+6, 300);
+				g.setColor(Color.BLACK);
+				g.drawString(Integer.toString(i), (int) (cons_x * i)+2, 311);
+
+			}
 			
 			int y = 1;
 			newList.add(-2);
@@ -79,7 +88,7 @@ public class draw extends JPanel{
 					else{
 						g.setColor(Color.BLACK);
 					}
-					g.drawOval((int) (cons_x * i),(int) (cons_y * y),3,3);
+					g.drawOval((int) (cons_x * i)+5,(int) (cons_y * y),3,3);
 					y++;
 				}
 				else{
@@ -90,7 +99,7 @@ public class draw extends JPanel{
 					else{
 						g.setColor(Color.BLACK);
 					}
-					g.drawOval((int) (cons_x * i),(int) (cons_y * y),3,3);
+					g.drawOval((int) (cons_x * i)+5,(int) (cons_y * y),3,3);
 					y++;
 				}
 			}
