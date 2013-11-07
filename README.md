@@ -1,4 +1,0 @@
-OperatingSystem
-===============
-
-OperatingSystems

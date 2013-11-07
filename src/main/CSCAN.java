@@ -1,10 +1,9 @@
+package main;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
-public class CLOOK implements Algorithm {
+public class CSCAN implements Algorithm {
 	private boolean[] bitVector;
 	private int startPoint;
 	private ArrayList<Integer> queue;
@@ -15,41 +14,39 @@ public class CLOOK implements Algorithm {
 		return processedOrder;
 	}
 	private void processOrder(){
-		processedOrder = new LinkedList<Integer>();
 		steps = new ArrayList<Integer>();
-		ArrayList<Integer> sortList = new ArrayList<Integer>();
-		sortList.addAll(queue);
-		Collections.sort(sortList);
-		int big = sortList.get(sortList.size()-1), small = sortList.get(0);
-		for(int i = startPoint; i<big;i++){
+		processedOrder = new LinkedList<Integer>();
+		for(int i = startPoint; i<bitVector.length; i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
 			}
-			if(!(i==startPoint)&&!(i==big)){
+			if(!(i==startPoint)&&!(i==bitVector.length-1)){
 				steps.add(i);
 			}
 		}
-		System.out.println("Right end reached. Moving reader head to first order.");
-		for(int i=big; i>small; i--){
+		for(int i=bitVector.length-1; i>0; i--){
 			steps.add(i);
 		}
-		for(int i=small; i<startPoint; i++){
+		System.out.println("Right end reached. Moving reader head to beginning.");
+		for(int i=0; i<startPoint; i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
 			}
-			steps.add(i);
+			if(!(i==bitVector.length-1)){
+				steps.add(i);
+			}
 		}
-		System.out.println("Startpoint reached. Ending algorithm.");
+		System.out.println("Start point reached. Ending algorithm.");
 	}
 	@Override
 	public void setUpAlgorithm(ArrayList<Integer> queue, boolean[] bits,
 			int start) {
-		this.bitVector = bits;
 		this.queue = queue;
+		this.bitVector = bits;
 		this.startPoint = start;
 		processOrder();
 	}
@@ -58,4 +55,5 @@ public class CLOOK implements Algorithm {
 		return steps;
 	}
 	
+
 }

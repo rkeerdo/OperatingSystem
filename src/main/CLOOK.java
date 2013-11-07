@@ -1,8 +1,11 @@
+package main;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CSCAN implements Algorithm {
+
+public class CLOOK implements Algorithm {
 	private boolean[] bitVector;
 	private int startPoint;
 	private ArrayList<Integer> queue;
@@ -13,39 +16,41 @@ public class CSCAN implements Algorithm {
 		return processedOrder;
 	}
 	private void processOrder(){
-		steps = new ArrayList<Integer>();
 		processedOrder = new LinkedList<Integer>();
-		for(int i = startPoint; i<bitVector.length; i++){
+		steps = new ArrayList<Integer>();
+		ArrayList<Integer> sortList = new ArrayList<Integer>();
+		sortList.addAll(queue);
+		Collections.sort(sortList);
+		int big = sortList.get(sortList.size()-1), small = sortList.get(0);
+		for(int i = startPoint; i<big;i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
 			}
-			if(!(i==startPoint)&&!(i==bitVector.length-1)){
+			if(!(i==startPoint)&&!(i==big)){
 				steps.add(i);
 			}
 		}
-		for(int i=bitVector.length-1; i>0; i--){
+		System.out.println("Right end reached. Moving reader head to first order.");
+		for(int i=big; i>small; i--){
 			steps.add(i);
 		}
-		System.out.println("Right end reached. Moving reader head to beginning.");
-		for(int i=0; i<startPoint; i++){
+		for(int i=small; i<startPoint; i++){
 			if(bitVector[i]){
 				processedOrder.offer(i);
 				bitVector[i]=false;
 				System.out.println(i + " has been added to order.");
 			}
-			if(!(i==bitVector.length-1)){
-				steps.add(i);
-			}
+			steps.add(i);
 		}
-		System.out.println("Start point reached. Ending algorithm.");
+		System.out.println("Startpoint reached. Ending algorithm.");
 	}
 	@Override
 	public void setUpAlgorithm(ArrayList<Integer> queue, boolean[] bits,
 			int start) {
-		this.queue = queue;
 		this.bitVector = bits;
+		this.queue = queue;
 		this.startPoint = start;
 		processOrder();
 	}
@@ -54,5 +59,4 @@ public class CSCAN implements Algorithm {
 		return steps;
 	}
 	
-
 }
