@@ -37,11 +37,13 @@ public class FirstFit implements Algorithm {
 			joinHoles();
 		int aval = getFirstAvalible();
 		if (aval < 0) {
+			System.out.println("UNAVALIBLE SPACE.");
 			pane.debug("Unavalible space. Waiting for new avalible memory space.");
 		} else if(nextService!=null){
 			MemoryPiece nextHole = memory.get(aval).startProcess(nextService);
 			memory.add(aval + 1, nextHole);
 		}
+		pane.setDisplayText(parseToString());
 		for (int i = 0; i < memory.size(); i++) {
 			if (!memory.get(i).isHole()) {
 				System.out.println("Processing request:"
@@ -56,6 +58,7 @@ public class FirstFit implements Algorithm {
 			nextService = this.requests.poll();
 		}
 		try {
+			pane.setDisplayText(parseToString());
 			Thread.sleep(750);
 		} catch (InterruptedException e) {
 			pane.debug("An error has occurred. System may not act normal anymore.");
@@ -99,10 +102,32 @@ public class FirstFit implements Algorithm {
 	}
 
 	private boolean canFitNext() {
-		if (getFirstAvalible() >= 0) {
+		if (getNextAvalible() >= 0) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	private String parseToString(){
+		StringBuilder builder = new StringBuilder();
+		for(int i=0;i<memory.size();i++){
+			for(int j=0; j<memory.get(i).getLength();j++){
+				if(memory.get(i).isHole()){
+					builder.append("[ 0 ] ");
+				} else {
+					builder.append("[ 1 ] ");
+				}
+			}
+		}
+		return builder.toString();
+	}
+	
+	private int getNextAvalible() {
+		for (int i = 0; i < memory.size(); i++) {
+			if (memory.get(i).canProcessRequest(requests.peek())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

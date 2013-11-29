@@ -81,5 +81,5 @@ public class MemoryPiece {
 	private void setBackToEmpty(){
 		this.currentService = null;
 		this.type = true;
-	}	
+	}
 }

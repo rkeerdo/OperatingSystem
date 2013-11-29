@@ -48,10 +48,8 @@ public class DefaultDataStore {
 		String[] pieces1 = requestForm.split(";");
 		for(String piece : pieces1){
 			if(piece.startsWith("[") && piece.endsWith("]")){
-				System.out.println(piece);
 				piece = piece.replace("[", "");
 				piece = piece.replace("]", "");
-				System.out.println(piece);
 				String[] pieces2 = piece.split(",");
 				if(pieces2.length!=2){
 					JOptionPane.showMessageDialog(null, "Invalid string entered! Cancel procedure.");
