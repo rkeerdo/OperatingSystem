@@ -19,7 +19,7 @@ public class MainWindow {
 
 	private JFrame frame;
 	private JTextField txtEnter;
-	private JTextField textField_2;
+	private JTextField LenField;
 	private JComboBox<String> PatternSelector;
 	private JComboBox<String> AlgorithmSelector;
 	private JButton GoTime;
@@ -99,11 +99,12 @@ public class MainWindow {
 		RightPanelUp.add(txtEnter, BorderLayout.CENTER);
 		txtEnter.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setToolTipText("Size of the memory block will be displayed here");
-		RightPanelUp.add(textField_2, BorderLayout.EAST);
-		textField_2.setColumns(10);
+		LenField = new JTextField();
+		LenField.setEditable(true);
+		LenField.setText("32");
+		LenField.setToolTipText("Size of the memory block will be displayed here");
+		RightPanelUp.add(LenField, BorderLayout.EAST);
+		LenField.setColumns(10);
 		
 		JPanel RightPanelDown = new JPanel();
 		VertSplitter.setRightComponent(RightPanelDown);
@@ -155,6 +156,7 @@ public class MainWindow {
 	}
 	private void GoTimeAction(){
 		storage.setSelectedInput(txtEnter.getText());
+		storage.setMemLen(LenField.getText());
 		storage.pushAlgorithmStart(algorithms);
 	}
 }

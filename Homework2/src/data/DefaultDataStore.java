@@ -43,6 +43,13 @@ public class DefaultDataStore {
 	public void setSelectedInput(String text){
 		this.selectedInput = text;
 	}
+	public void setMemLen(String len){
+		try{
+			this.memoryLen = Integer.parseInt(len);
+		} catch (Exception e){
+			// Let memoryLen remain default.
+		}
+	}
 	private Queue<MemoryRequest> parseRequestString(String requestForm){
 		Queue<MemoryRequest> memoryQueue = new LinkedList<MemoryRequest>();
 		String[] pieces1 = requestForm.split(";");

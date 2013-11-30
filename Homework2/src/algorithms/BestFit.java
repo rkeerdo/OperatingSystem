@@ -3,6 +3,7 @@ package algorithms;
 import graphics.AnimatorPane;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Queue;
 
 import data.MemoryPiece;
@@ -13,7 +14,8 @@ public class BestFit implements Algorithm {
 	MemoryRequest nextService;
 	AnimatorPane pane;
 	Queue<MemoryRequest> requests;
-
+	Queue<MemoryRequest> backupRequests;
+	int memLen;
 	public BestFit() {
 		memory = new ArrayList<MemoryPiece>();
 	}
@@ -21,6 +23,8 @@ public class BestFit implements Algorithm {
 	@Override
 	public void executeAlgorithm(AnimatorPane animatorPanel,
 			Queue<MemoryRequest> requests, int memLen) {
+		this.memLen = memLen;
+		this.backupRequests = requests;
 		pane = animatorPanel;
 		MemoryPiece firstPiece = new MemoryPiece(true, memLen, 0);
 		memory.add(firstPiece);
@@ -41,14 +45,14 @@ public class BestFit implements Algorithm {
 			pane.debug("Unavalible space. Waiting for new avalible memory space.");
 		} else if(nextService!=null){
 			MemoryPiece nextHole = memory.get(aval).startProcess(nextService);
+			pane.debug("Processing request:"
+					+ memory.get(aval).getCurrentRequest());
 			memory.add(aval + 1, nextHole);
 		}
 		pane.setDisplayText(parseToString());
 		for (int i = 0; i < memory.size(); i++) {
 			if (!memory.get(i).isHole()) {
 				System.out.println("Processing request:"
-						+ memory.get(i).getCurrentRequest());
-				pane.debug("Processing request:"
 						+ memory.get(i).getCurrentRequest());
 				memory.get(i).processCurrentRequest();
 				pane.repaint();
@@ -98,11 +102,14 @@ public class BestFit implements Algorithm {
 				return i;
 			}
 		}
+		if(nextService.getSize()>this.memLen){
+			reStructureReStart(nextService.getSize());
+		}
 		return -1;
 	}
 
 	private boolean canFitNext() {
-		if (getNextAvalible() >= 0) {
+		if (getBestAvalible() >= 0) {
 			return true;
 		} else {
 			return false;
@@ -122,12 +129,22 @@ public class BestFit implements Algorithm {
 		return builder.toString();
 	}
 	
-	private int getNextAvalible() {
+	private int getBestAvalible() {
+		ArrayList<MemoryPiece> tempList = new ArrayList<MemoryPiece>();
 		for (int i = 0; i < memory.size(); i++) {
 			if (memory.get(i).canProcessRequest(requests.peek())) {
-				return i;
+				tempList.add(memory.get(i));
 			}
 		}
-		return -1;
+		Collections.sort(tempList);
+		if(tempList.size()==0){
+			return -1;
+		} else {
+			System.out.println(tempList);
+			return memory.indexOf(tempList.get(0));
+		}
+	}
+	private void reStructureReStart(int newMaxSize){
+		this.executeAlgorithm(pane, backupRequests, newMaxSize);
 	}
 }

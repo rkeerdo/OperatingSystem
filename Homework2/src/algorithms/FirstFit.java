@@ -13,7 +13,8 @@ public class FirstFit implements Algorithm {
 	MemoryRequest nextService;
 	AnimatorPane pane;
 	Queue<MemoryRequest> requests;
-
+	Queue<MemoryRequest> backupRequests;
+	int memLen;
 	public FirstFit() {
 		memory = new ArrayList<MemoryPiece>();
 	}
@@ -21,6 +22,8 @@ public class FirstFit implements Algorithm {
 	@Override
 	public void executeAlgorithm(AnimatorPane animatorPanel,
 			Queue<MemoryRequest> requests, int memLen) {
+		this.memLen = memLen;
+		this.backupRequests = requests;
 		pane = animatorPanel;
 		MemoryPiece firstPiece = new MemoryPiece(true, memLen, 0);
 		memory.add(firstPiece);
@@ -32,6 +35,8 @@ public class FirstFit implements Algorithm {
 		}
 	}
 
+	
+	
 	private void serviceRequest() {
 		if (checkForAdjecentHoles())
 			joinHoles();
@@ -41,14 +46,14 @@ public class FirstFit implements Algorithm {
 			pane.debug("Unavalible space. Waiting for new avalible memory space.");
 		} else if(nextService!=null){
 			MemoryPiece nextHole = memory.get(aval).startProcess(nextService);
+			pane.debug("Processing request:"
+					+ memory.get(aval).getCurrentRequest());
 			memory.add(aval + 1, nextHole);
 		}
 		pane.setDisplayText(parseToString());
 		for (int i = 0; i < memory.size(); i++) {
 			if (!memory.get(i).isHole()) {
 				System.out.println("Processing request:"
-						+ memory.get(i).getCurrentRequest());
-				pane.debug("Processing request:"
 						+ memory.get(i).getCurrentRequest());
 				memory.get(i).processCurrentRequest();
 				pane.repaint();
@@ -98,6 +103,9 @@ public class FirstFit implements Algorithm {
 				return i;
 			}
 		}
+		if(nextService.getSize()>this.memLen){
+			reStructureReStart(nextService.getSize());
+		}
 		return -1;
 	}
 
@@ -129,5 +137,8 @@ public class FirstFit implements Algorithm {
 			}
 		}
 		return -1;
+	}
+	private void reStructureReStart(int newMaxSize){
+		this.executeAlgorithm(pane, backupRequests, newMaxSize);
 	}
 }

@@ -1,6 +1,6 @@
 package data;
 
-public class MemoryPiece {
+public class MemoryPiece implements Comparable<MemoryPiece> {
 	private int len;
 	private int startingPoint;
 	//If type == true, it is a piece of empty memory that can be used.
@@ -81,5 +81,19 @@ public class MemoryPiece {
 	private void setBackToEmpty(){
 		this.currentService = null;
 		this.type = true;
+	}
+
+	@Override
+	public int compareTo(MemoryPiece arg0) {
+		if (this.len>arg0.len){
+			return 1;
+		} else if(this.len==arg0.len){
+			return 0;
+		} else {
+			return -1;
+		}
+	}
+	public String toString(){
+		return ("["+this.startingPoint+";"+this.len+";Request:"+this.currentService+"]");
 	}
 }
